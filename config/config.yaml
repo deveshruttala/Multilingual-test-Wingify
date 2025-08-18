@@ -4,21 +4,24 @@ baseUrl: "https://app.vwo.com/#/settings/profile-details?accountId=955080"
 
 # If login is needed, set enabled: true and fill selectors/values
 auth:
-  enabled: false
+  enabled: true
   url: "https://app.vwo.com/"
-  username: ""
-  password: ""
-  usernameSelector: "input[name='username'], #login-username"
-  passwordSelector: "input[name='password'], #login-password"
-  submitSelector: "button[type='submit'], button:has-text('Sign in')"
+  username: "qa+apiautomation+1725779368742@wingify.com"
+  password: "Wingify@123"
+  usernameSelector: "input[name='username']"
+  passwordSelector: "input[name='password']"
+  submitSelector: "button:has-text('Sign in')"
+  # Wait for dashboard after login
+  postLoginUrl: "**/dashboard"
+  postLoginTimeout: 15000
 
 # How to switch language to Japanese
 language:
   # Text or selector to trigger language menu/switch
-  switchToJapaneseSelector: "text=日本語, [data-lang='ja'], button:has-text('日本語')"
-  switchToEnglishSelector: "text=English, [data-lang='en'], button:has-text('English')"
+  switchToJapaneseSelector: "xpath=//*[@id='main-page']/main/div[5]/footer/div/div[3]/div/ul/li/div/button[2], [data-qa='ja-selector'], button[data-qa='ja-selector'], button:has-text('日本語'), text=日本語, [data-lang='ja']"
+  switchToEnglishSelector: "xpath=//*[@id='main-page']/main/div[5]/footer/div/div[3]/div/ul/li/div/button[1], [data-qa='en-selector'], button[data-qa='en-selector'], button:has-text('English'), text=English, [data-lang='en']"
   # Wait after switching (ms)
-  postSwitchWaitMs: 800
+  postSwitchWaitMs: 1500
   expectedCode: "ja"  # ISO-639-1 for Japanese
 
 # Which pages to test (relative or absolute URLs)
@@ -48,10 +51,10 @@ visual:
 # Formatting checks (basic ja-JP rules)
 localeChecks:
   ja_JP:
-    dateRegex: "\d{4}年\s*\d{1,2}月\s*\d{1,2}日"   # e.g., 2025年8月18日
+    dateRegex: "\\d{4}年\\s*\\d{1,2}月\\d{1,2}日"   # e.g., 2025年8月18日
     currencySymbol: "¥"
     # Optional number grouping: 1,234 or 1 234 (we only check digits with separators present)
-    numberRegex: "\b\d{1,3}([,\s]\d{3})+\b"
+    numberRegex: "\\b\\d{1,3}([,\\s]\\d{3})+\\b"
 
 # Product words to ignore (see data/ignored_words_ja.txt)
 ignoredWordsFile: "data/ignored_words_ja.txt"

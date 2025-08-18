@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-08-19T02:42:17.827067",
+  "url": "https://app.vwo.com/#/settings/profile-details?accountId=955080",
+  "summary": {
+    "total_texts": 10,
+    "translated": 10,
+    "not_translated": 0,
+    "ignored": 0,
+    "coverage_percent": 100.0
+  },
+  "details": {
+    "translated": [
+      {
+        "english": "Funnel Reports",
+        "japanese": "ダッシュボード"
+      },
+      {
+        "english": "Feature Management",
+        "japanese": "多変量の"
+      },
+      {
+        "english": "Data360",
+        "japanese": "スプリットURL"
+      },
+      {
+        "english": "Introduction",
+        "japanese": "ダッシュボード"
+      },
+      {
+        "english": "Profiles",
+        "japanese": "ゴール"
+      },
+      {
+        "english": "Catalog",
+        "japanese": "メトリックレポート"
+      },
+      {
+        "english": "Recommendations",
+        "japanese": "ヒートマップ"
+      },
+      {
+        "english": "Blocks",
+        "japanese": "セッションの録音"
+      },
+      {
+        "english": "Video Library",
+        "japanese": "モバイル録音"
+      },
+      {
+        "english": "Settings",
+        "japanese": "フォーム"
+      }
+    ],
+    "not_translated": [],
+    "ignored": []
+  }
+}
