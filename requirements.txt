@@ -1,0 +1,9 @@
+
+playwright==1.46.0
+pytest==8.3.2
+pytest-xdist==3.6.1
+PyYAML==6.0.2
+lingua-language-detector==2.0.2
+pillow==10.4.0
+babel==2.15.0
+rapidfuzz==3.9.6

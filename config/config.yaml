@@ -1,0 +1,57 @@
+
+# General config for the app under test
+baseUrl: "https://app.vwo.com/#/settings/profile-details?accountId=955080"
+
+# If login is needed, set enabled: true and fill selectors/values
+auth:
+  enabled: false
+  url: "https://app.vwo.com/"
+  username: ""
+  password: ""
+  usernameSelector: "input[name='username'], #login-username"
+  passwordSelector: "input[name='password'], #login-password"
+  submitSelector: "button[type='submit'], button:has-text('Sign in')"
+
+# How to switch language to Japanese
+language:
+  # Text or selector to trigger language menu/switch
+  switchToJapaneseSelector: "text=日本語, [data-lang='ja'], button:has-text('日本語')"
+  switchToEnglishSelector: "text=English, [data-lang='en'], button:has-text('English')"
+  # Wait after switching (ms)
+  postSwitchWaitMs: 800
+  expectedCode: "ja"  # ISO-639-1 for Japanese
+
+# Which pages to test (relative or absolute URLs)
+urlsFile: "data/urls.csv"
+
+# CSS selectors to ignore during text extraction (comma separated list allowed)
+ignoreSelectors:
+  - "input, textarea, select, [contenteditable='true']"
+  - "[data-i18n-ignore='true']"
+  - "svg, script, style, noscript"
+
+# Heuristics
+minTextLength: 2      # ignore super tiny strings
+maxNodeTextLength: 400
+languageConfidenceThreshold: 0.50   # used by some detectors if available
+minJapaneseCoveragePercent: 70      # % of visible text that should be Japanese
+
+# Visual testing
+visual:
+  enabled: true
+  fullPage: true
+  diffThreshold: 0.02    # 2% pixel change allowed
+  viewport:
+    width: 1440
+    height: 900
+
+# Formatting checks (basic ja-JP rules)
+localeChecks:
+  ja_JP:
+    dateRegex: "\d{4}年\s*\d{1,2}月\s*\d{1,2}日"   # e.g., 2025年8月18日
+    currencySymbol: "¥"
+    # Optional number grouping: 1,234 or 1 234 (we only check digits with separators present)
+    numberRegex: "\b\d{1,3}([,\s]\d{3})+\b"
+
+# Product words to ignore (see data/ignored_words_ja.txt)
+ignoredWordsFile: "data/ignored_words_ja.txt"
