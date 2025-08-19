@@ -136,17 +136,59 @@ def take_screenshot(page: Page, path: str, fullPage: bool = True):
     page.screenshot(path=path, full_page=fullPage)
 
 def navigate_to_settings_after_login(page: Page, settings_url: str):
-    """Navigate to settings page after successful login"""
+    """Navigate to settings page after successful login with complete page loading"""
     print(f"Navigating to settings page: {settings_url}")
-    page.goto(settings_url)
+    
+    # Navigate to the page with more lenient timeout
+    try:
+        page.goto(settings_url, wait_until="domcontentloaded", timeout=60000)
+    except Exception as e:
+        print(f"Warning: Navigation timeout, trying without wait: {e}")
+        page.goto(settings_url, timeout=60000)
+    
+    # Wait for the page to be fully loaded
+    try:
+        page.wait_for_load_state("domcontentloaded", timeout=30000)
+        page.wait_for_load_state("networkidle", timeout=30000)
+    except Exception as e:
+        print(f"Warning: Load state timeout: {e}")
+    
+    # Additional wait for dynamic content
+    page.wait_for_timeout(3000)
     
     # Wait for settings page to load (look for common settings page indicators)
     try:
-        # Try to wait for settings page content
-        page.wait_for_selector("text=Profile details", timeout=10000)
-        print("Settings page loaded successfully")
+        # Try multiple selectors for settings page content
+        selectors_to_try = [
+            "text=Profile details",
+            "text=Settings",
+            "[data-testid*='settings']",
+            "[data-testid*='profile']",
+            ".settings-content",
+            ".profile-content"
+        ]
+        
+        for selector in selectors_to_try:
+            try:
+                page.wait_for_selector(selector, timeout=5000)
+                print(f"Settings page loaded successfully (found: {selector})")
+                break
+            except Exception:
+                continue
+        else:
+            print("Settings page navigation completed (fallback)")
+            
     except Exception as e:
         print(f"Warning: Could not detect settings page load: {e}")
         # Fallback: wait for network idle
         page.wait_for_load_state("networkidle")
         print("Settings page navigation completed (fallback)")
+    
+    # Ensure we're not on a login page
+    try:
+        login_elements = page.query_selector_all('input[name="username"], input[name="password"], button:has-text("Sign in")')
+        if login_elements:
+            print("Warning: Still on login page, waiting for redirect...")
+            page.wait_for_timeout(5000)
+    except Exception:
+        pass

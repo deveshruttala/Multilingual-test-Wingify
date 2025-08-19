@@ -1,25 +1,16 @@
-English Text,Current Japanese Text,Text Length,Priority,Notes
-Two-Factor Authentication (2FA),English,31,High,
-Show logged in users,,20,Medium,
-Developer resources,,19,Medium,
-Feature Management,Feature Management,18,Medium,
-File size limit:,Developer resources,16,Medium,
-Disabled for you,,16,Medium,
-Current Password,,16,Medium,
-Confirm Password,,16,Medium,
-Recommendations,Recommendations,15,Medium,
-Change Password,,15,Medium,
-Funnel Reports,Funnel Reports,14,Medium,
-New Password,,12,Medium,
-Department,512 x 512 px.,10,Low,
-Enable 2FA,,10,Low,
-Data360,Data360,7,Low,
-Catalog,Catalog,7,Low,
-Country,pngjpeg,7,Low,
-サポートを頼む,,7,Low,
-English,,7,Low,
-Blocks,Blocks,6,Low,
-稼働時間情報,,6,Low,
-2 MB.,Show logged in users,5,Low,
-Role,2 MB.,4,Low,
-日本語,,3,Low,
+﻿English Text,Current Japanese Text,Text Length,Priority,Category
+サポートを頼む Developer resources 1-415-909-4660 Show logged in users 稼働時間情報 English 日本語,,82,High,UI Labels
+サポートを頼む Developer resources 1-415-909-4660,,42,High,UI Labels
+Two-Factor Authentication (2FA),Show logged in users 稼働時間情報,31,High,UI Labels
+Show logged in users 稼働時間情報,,27,High,UI Labels
+Developer resources,,19,Medium,Menu Items
+Current Password,,16,Medium,Menu Items
+Confirm Password,,16,Medium,Menu Items
+Change Password,English 日本語,15,Medium,Menu Items
+Funnel Reports,Funnel Reports,14,Medium,Menu Items
+512 x 512 px.,サポートを頼む Developer resources 1-415-909-4660,13,Medium,Menu Items
+New Password,,12,Medium,Menu Items
+Department,pngjpeg,10,Low,Buttons
+Learn more,Show logged in users,10,Low,Buttons
+Role Role,512 x 512 px.,9,Low,Buttons
+"png, jpeg",サポートを頼む Developer resources 1-415-909-4660 Show logged in users 稼働時間情報 English 日本語,9,Low,Buttons

@@ -31,7 +31,7 @@ def detect_language(text: str) -> str:
     return "unknown"
 
 def extract_visible_texts(page, ignore_selectors=None) -> List[str]:
-    """Extracts all visible texts except ignored elements"""
+    """Extracts all visible texts except ignored elements, avoiding login/auth pages"""
     ignore_selectors = ignore_selectors or []
     
     js_script = """
@@ -45,6 +45,22 @@ def extract_visible_texts(page, ignore_selectors=None) -> List[str]:
             }
             
             function shouldIgnore(el) {
+                // Skip login/auth related elements
+                const authSelectors = [
+                    'input[name="username"]', 'input[name="password"]', 
+                    'button', '.login-form', '.auth-form', '[data-testid*="login"]',
+                    '.signin', '.signup', '.authentication'
+                ];
+                
+                // Check auth selectors first
+                for (const authSel of authSelectors) {
+                    try {
+                        if (el.matches && el.matches(authSel)) return true;
+                        if (el.closest && el.closest(authSel)) return true;
+                    } catch(e) {}
+                }
+                
+                // Check custom ignore selectors
                 return ignoreSelectors.some(sel => {
                     try {
                         return el.matches && el.matches(sel);
@@ -54,27 +70,55 @@ def extract_visible_texts(page, ignore_selectors=None) -> List[str]:
                 });
             }
             
-            const texts = [];
-            const walker = document.createTreeWalker(
-                document.body, 
-                NodeFilter.SHOW_TEXT, 
-                null, 
-                false
-            );
+            // Skip if we're on a login page (but be less aggressive)
+            const hasLoginForm = document.querySelector('input[name="username"]') && 
+                                document.querySelector('input[name="password"]') &&
+                                document.querySelector('button');
             
-            while (walker.nextNode()) {
-                const node = walker.currentNode;
-                const parent = node.parentElement;
+            if (hasLoginForm && window.location.pathname.includes('/login')) {
+                return [];
+            }
+            
+            const texts = [];
+            
+            // Method 1: Get text from specific UI elements first (most reliable)
+            const uiElements = document.querySelectorAll('nav, .nav-item, .menu-item, .btn, button, a, label, h1, h2, h3, h4, h5, h6, p, span, div');
+            for (const el of uiElements) {
+                if (!isVisible(el) || shouldIgnore(el)) continue;
                 
-                if (!parent || !isVisible(parent) || shouldIgnore(parent)) continue;
-                
-                const txt = node.nodeValue.trim();
-                if (txt.length > 2) {
-                    texts.push(txt);
+                const txt = el.innerText.trim();
+                if (txt.length > 2 && txt.length < 100) {
+                    // Remove duplicate texts and empty strings
+                    if (txt && !texts.includes(txt)) {
+                        texts.push(txt);
+                    }
                 }
             }
             
-            return texts;
+            // Method 2: Fallback to TreeWalker if not enough texts
+            if (texts.length < 10) {
+                const walker = document.createTreeWalker(
+                    document.body, 
+                    NodeFilter.SHOW_TEXT, 
+                    null, 
+                    false
+                );
+                
+                while (walker.nextNode()) {
+                    const node = walker.currentNode;
+                    const parent = node.parentElement;
+                    
+                    if (!parent || !isVisible(parent) || shouldIgnore(parent)) continue;
+                    
+                    const txt = node.nodeValue.trim();
+                    if (txt.length > 2 && txt.length < 100 && !texts.includes(txt)) {
+                        texts.push(txt);
+                    }
+                }
+            }
+            
+            // Remove any remaining duplicates and empty strings
+            return texts.filter((txt, index) => txt && texts.indexOf(txt) === index);
         }
     """
     
@@ -85,15 +129,30 @@ def extract_visible_texts(page, ignore_selectors=None) -> List[str]:
         return []
 
 def clean_text(text: str) -> str:
-    """Clean and normalize text"""
+    """Clean and normalize text with proper UTF-8 handling"""
     if not text:
         return ""
+    
+    # Ensure proper UTF-8 encoding
+    if isinstance(text, bytes):
+        try:
+            text = text.decode('utf-8')
+        except UnicodeDecodeError:
+            try:
+                text = text.decode('latin-1')
+            except UnicodeDecodeError:
+                return ""
     
     # Remove extra whitespace
     text = re.sub(r'\s+', ' ', text.strip())
     
-    # Remove common unwanted characters
-    text = re.sub(r'[^\w\s\u3040-\u30FF\u4E00-\u9FFF.,!?;:()\[\]{}"\'-]', '', text)
+    # Remove common unwanted characters but preserve Japanese characters
+    # Allow: alphanumeric, spaces, Japanese characters, basic punctuation
+    text = re.sub(r'[^\w\s\u3040-\u30FF\u4E00-\u9FFF\u3400-\u4DBF.,!?;:()\[\]{}"\'-]', '', text)
+    
+    # Remove very short or very long texts
+    if len(text) < 2 or len(text) > 100:
+        return ""
     
     return text
 

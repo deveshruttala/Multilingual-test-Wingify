@@ -1,12 +1,12 @@
 {
-  "timestamp": "2025-08-19T11:36:34.748970",
+  "timestamp": "2025-08-19T16:03:56.658528",
   "url": "https://app.vwo.com/#/settings/profile-details?accountId=955080",
   "summary": {
-    "total_texts": 102,
-    "translated": 78,
-    "not_translated": 24,
+    "total_texts": 95,
+    "translated": 72,
+    "not_translated": 23,
     "ignored": 0,
-    "coverage_percent": 76.47
+    "coverage_percent": 75.79
   },
   "details": {
     "translated": [
@@ -21,10 +21,6 @@
       {
         "english": "スプリットURL",
         "japanese": "スプリットURL"
-      },
-      {
-        "english": "ダッシュボード",
-        "japanese": "ダッシュボード"
       },
       {
         "english": "ゴール",
@@ -93,234 +89,6 @@
       {
         "english": "Profiles",
         "japanese": "プロフィール"
-      },
-      {
-        "english": "イベント",
-        "japanese": "イベント"
-      },
-      {
-        "english": "セグメント",
-        "japanese": "セグメント"
-      },
-      {
-        "english": "トリガー",
-        "japanese": "トリガー"
-      },
-      {
-        "english": "メトリクス",
-        "japanese": "メトリクス"
-      },
-      {
-        "english": "ファネル",
-        "japanese": "ファネル"
-      },
-      {
-        "english": "モデル",
-        "japanese": "モデル"
-      },
-      {
-        "english": "観測結果",
-        "japanese": "観測結果"
-      },
-      {
-        "english": "事例集",
-        "japanese": "事例集"
-      },
-      {
-        "english": "Video Library",
-        "japanese": "ビデオライブラリ"
-      },
-      {
-        "english": "アップグレード",
-        "japanese": "アップグレード"
-      },
-      {
-        "english": "ウェブサイトとアプリ",
-        "japanese": "ウェブサイトとアプリ"
-      },
-      {
-        "english": "ページ",
-        "japanese": "ページ"
-      },
-      {
-        "english": "アップデート",
-        "japanese": "アップデート"
-      },
-      {
-        "english": "ヘルプが必要ですか?",
-        "japanese": "ヘルプが必要ですか?"
-      },
-      {
-        "english": "Settings",
-        "japanese": "アカウントID"
-      },
-      {
-        "english": "Account ID",
-        "japanese": "アカウント"
-      },
-      {
-        "english": "Accounts",
-        "japanese": "訪問者の割り当て"
-      },
-      {
-        "english": "General",
-        "japanese": "利用状況"
-      },
-      {
-        "english": "Visitor Allocation",
-        "japanese": "ユーザー"
-      },
-      {
-        "english": "Usage",
-        "japanese": "セキュリティ"
-      },
-      {
-        "english": "Users",
-        "japanese": "プライバシーセンター"
-      },
-      {
-        "english": "Security",
-        "japanese": "サブスクリプションをキャンセル"
-      },
-      {
-        "english": "Privacy Center",
-        "japanese": "アプリ"
-      },
-      {
-        "english": "Cancel Subscription",
-        "japanese": "アクティビティタイムライン"
-      },
-      {
-        "english": "Apps",
-        "japanese": "Insights設定"
-      },
-      {
-        "english": "Activity Timeline",
-        "japanese": "通知設定"
-      },
-      {
-        "english": "Insights Settings",
-        "japanese": "属性リスト"
-      },
-      {
-        "english": "Notification Preferences",
-        "japanese": "キャンペーン"
-      },
-      {
-        "english": "Attributes List",
-        "japanese": "サブスクリプションと請求書"
-      },
-      {
-        "english": "Campaigns",
-        "japanese": "私の購読"
-      },
-      {
-        "english": "Subscription  Invoices",
-        "japanese": "非アクティブ"
-      },
-      {
-        "english": "My Subscription",
-        "japanese": "請求書履歴"
-      },
-      {
-        "english": "Inactive",
-        "japanese": "訪問者の割り当て"
-      },
-      {
-        "english": "Invoice History",
-        "japanese": "請求プロファイル"
-      },
-      {
-        "english": "Visitor Allocation",
-        "japanese": "プロフィール詳細"
-      },
-      {
-        "english": "Billing Profile",
-        "japanese": "ワークスペース"
-      },
-      {
-        "english": "Profile details",
-        "japanese": "プロフィール詳細"
-      },
-      {
-        "english": "Workspaces",
-        "japanese": "メール"
-      },
-      {
-        "english": "Profile Details",
-        "japanese": "メールアドレスの変更"
-      },
-      {
-        "english": "Basic",
-        "japanese": "電話番号"
-      },
-      {
-        "english": "Name",
-        "japanese": "日本語"
-      },
-      {
-        "english": "Email",
-        "japanese": "プロフィール画像"
-      },
-      {
-        "english": "Change Email Address",
-        "japanese": "画像をアップロード"
-      },
-      {
-        "english": "Phone number",
-        "japanese": "サポートされているファイルタイプ"
-      },
-      {
-        "english": "Country",
-        "japanese": "推奨サイズ:"
-      },
-      {
-        "english": "Department",
-        "japanese": "ファイルサイズの制限:"
-      },
-      {
-        "english": "Role",
-        "japanese": "セキュリティ"
-      },
-      {
-        "english": "Language",
-        "japanese": "2段階認証 (2FA)"
-      },
-      {
-        "english": "日本語",
-        "japanese": "もっと詳しく知ります"
-      },
-      {
-        "english": "Profile Picture",
-        "japanese": "2FAを有効にする"
-      },
-      {
-        "english": "Upload image",
-        "japanese": "パスワードを変更する"
-      },
-      {
-        "english": "File types supported",
-        "japanese": "現在のパスワード"
-      },
-      {
-        "english": "png, jpeg",
-        "japanese": "新しいパスワード"
-      },
-      {
-        "english": ". Recommended size:",
-        "japanese": "パスワードの確認"
-      },
-      {
-        "english": "512 x 512 px.",
-        "japanese": "サポートを頼む"
-      },
-      {
-        "english": "Security",
-        "japanese": "稼働時間情報"
-      },
-      {
-        "english": "Learn more",
-        "japanese": "日本語"
       }
     ],
     "not_translated": [
@@ -329,31 +97,23 @@
         "japanese": "Funnel Reports"
       },
       {
-        "english": "Feature Management",
-        "japanese": "Feature Management"
-      },
-      {
-        "english": "Data360",
-        "japanese": "Data360"
-      },
-      {
         "english": "Catalog",
         "japanese": "Catalog"
-      },
-      {
-        "english": "Recommendations",
-        "japanese": "Recommendations"
       },
       {
         "english": "Blocks",
         "japanese": "Blocks"
       },
       {
-        "english": "Country",
-        "japanese": "pngjpeg"
+        "english": "Apps",
+        "japanese": "Insights設定"
       },
       {
         "english": "Department",
+        "japanese": "pngjpeg"
+      },
+      {
+        "english": "Role Role",
         "japanese": "512 x 512 px."
       },
       {
@@ -361,28 +121,28 @@
         "japanese": "2 MB."
       },
       {
-        "english": "File size limit:",
-        "japanese": "Developer resources"
+        "english": "png, jpeg",
+        "japanese": "サポートを頼む Developer resources 1-415-909-4660 Show logged in users 稼働時間情報 English 日本語"
+      },
+      {
+        "english": "512 x 512 px.",
+        "japanese": "サポートを頼む Developer resources 1-415-909-4660"
       },
       {
         "english": "2 MB.",
-        "japanese": "Show logged in users"
+        "japanese": "Developer resources"
       },
       {
         "english": "Two-Factor Authentication (2FA)",
-        "japanese": "English"
+        "japanese": "Show logged in users 稼働時間情報"
       },
       {
-        "english": "Disabled for you",
-        "japanese": ""
-      },
-      {
-        "english": "Enable 2FA",
-        "japanese": ""
+        "english": "Learn more",
+        "japanese": "Show logged in users"
       },
       {
         "english": "Change Password",
-        "japanese": ""
+        "japanese": "English 日本語"
       },
       {
         "english": "Current Password",
@@ -397,7 +157,11 @@
         "japanese": ""
       },
       {
-        "english": "サポートを頼む",
+        "english": "サポートを頼む Developer resources 1-415-909-4660 Show logged in users 稼働時間情報 English 日本語",
+        "japanese": ""
+      },
+      {
+        "english": "サポートを頼む Developer resources 1-415-909-4660",
         "japanese": ""
       },
       {
@@ -405,19 +169,7 @@
         "japanese": ""
       },
       {
-        "english": "Show logged in users",
-        "japanese": ""
-      },
-      {
-        "english": "稼働時間情報",
-        "japanese": ""
-      },
-      {
-        "english": "English",
-        "japanese": ""
-      },
-      {
-        "english": "日本語",
+        "english": "Show logged in users 稼働時間情報",
         "japanese": ""
       }
     ],
