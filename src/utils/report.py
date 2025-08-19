@@ -51,9 +51,9 @@ def generate_translation_report(english_texts: List[str], japanese_texts: List[s
             "coverage_percent": round(coverage, 2)
         },
         "details": {
-            "translated": translated[:50],  # Limit to first 50
-            "not_translated": not_translated[:50],  # Limit to first 50
-            "ignored": ignored[:20]  # Limit to first 20
+            "translated": translated,  # Save all translated texts
+            "not_translated": not_translated,  # Save ALL untranslated texts
+            "ignored": ignored  # Save all ignored texts
         }
     }
     
@@ -111,7 +111,7 @@ def save_excel_report(report: Dict[str, Any], filename: str = "translation_repor
     return filepath
 
 def save_csv_report(report: Dict[str, Any], filename: str = "translation_report.csv"):
-    """Save report as CSV"""
+    """Save report as CSV with detailed information"""
     Path("reports").mkdir(exist_ok=True)
     filepath = Path("reports") / filename
     
@@ -119,21 +119,44 @@ def save_csv_report(report: Dict[str, Any], filename: str = "translation_report.
         writer = csv.writer(f)
         
         # Write header
-        writer.writerow(["Type", "English Text", "Japanese Text"])
+        writer.writerow(["Type", "English Text", "Japanese Text", "Length", "Status"])
         
         # Write translated texts
         for item in report["details"]["translated"]:
-            writer.writerow(["Translated", item["english"], item["japanese"]])
+            writer.writerow(["Translated", item["english"], item["japanese"], len(item["english"]), "✅"])
         
         # Write not translated texts
         for item in report["details"]["not_translated"]:
-            writer.writerow(["Not Translated", item["english"], item["japanese"]])
+            writer.writerow(["Not Translated", item["english"], item["japanese"], len(item["english"]), "❌"])
         
         # Write ignored texts
         for item in report["details"]["ignored"]:
-            writer.writerow(["Ignored", item["english"], item["japanese"]])
+            writer.writerow(["Ignored", item["english"], item["japanese"], len(item["english"]), "⚠️"])
     
     print(f"📋 CSV report saved: {filepath}")
+    return filepath
+
+def save_untranslated_words_report(report: Dict[str, Any], filename: str = "untranslated_words.csv"):
+    """Save detailed report of all untranslated words for translation team"""
+    Path("reports").mkdir(exist_ok=True)
+    filepath = Path("reports") / filename
+    
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        
+        # Write header
+        writer.writerow(["English Text", "Current Japanese Text", "Text Length", "Priority", "Notes"])
+        
+        # Sort by text length (longer texts might be more important)
+        untranslated = sorted(report["details"]["not_translated"], 
+                            key=lambda x: len(x["english"]), reverse=True)
+        
+        # Write all untranslated texts
+        for item in untranslated:
+            priority = "High" if len(item["english"]) > 20 else "Medium" if len(item["english"]) > 10 else "Low"
+            writer.writerow([item["english"], item["japanese"], len(item["english"]), priority, ""])
+    
+    print(f"📝 Untranslated words report saved: {filepath}")
     return filepath
 
 def generate_comprehensive_report(english_texts: List[str], japanese_texts: List[str], 
@@ -147,6 +170,10 @@ def generate_comprehensive_report(english_texts: List[str], japanese_texts: List
     json_file = save_json_report(report)
     excel_file = save_excel_report(report)
     csv_file = save_csv_report(report)
+    
+    # Save detailed untranslated words report
+    if report["details"]["not_translated"]:
+        untranslated_file = save_untranslated_words_report(report)
     
     # Print summary
     print(f"\n🎯 Translation Report Summary:")

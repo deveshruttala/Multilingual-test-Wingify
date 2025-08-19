@@ -7,6 +7,6 @@ lingua-language-detector==2.1.1
 pillow==10.4.0
 babel==2.15.0
 rapidfuzz==3.9.6
-pandas==2.1.4
+pandas>=2.2.0
 openpyxl==3.1.2
-numpy==1.24.3
+numpy>=1.26.0

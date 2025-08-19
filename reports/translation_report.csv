@@ -1,2 +1,103 @@
-url,total_text_nodes,japanese_detected,coverage_percent,non_japanese_example
-https://app.vwo.com/#/settings/profile-details?accountId=955080,106,62,58.5,"['洞察', 'Funnel Reports', 'Feature Management']"
+Type,English Text,Japanese Text,Length,Status
+Translated,ダッシュボード,ダッシュボード,7,✅
+Translated,多変量の,多変量の,4,✅
+Translated,スプリットURL,スプリットURL,8,✅
+Translated,ダッシュボード,ダッシュボード,7,✅
+Translated,ゴール,ゴール,3,✅
+Translated,メトリックレポート,メトリックレポート,9,✅
+Translated,ヒートマップ,ヒートマップ,6,✅
+Translated,セッションの録音,セッションの録音,8,✅
+Translated,モバイル録音,モバイル録音,6,✅
+Translated,フォーム,フォーム,4,✅
+Translated,Webアンケート,Webアンケート,8,✅
+Translated,機能フラグ,機能フラグ,5,✅
+Translated,フラグの展開,フラグの展開,6,✅
+Translated,フラグテスト,フラグテスト,6,✅
+Translated,フラグ多変量,フラグ多変量,6,✅
+Translated,フラグをカスタマイズ,フラグをカスタマイズ,10,✅
+Translated,技術的負債,技術的負債,5,✅
+Translated,パーソナライズ,パーソナライズ,7,✅
+Translated,ウェブロールアウト,ウェブロールアウト,9,✅
+Translated,Introduction,はじめに,12,✅
+Translated,Profiles,プロフィール,8,✅
+Translated,イベント,イベント,4,✅
+Translated,セグメント,セグメント,5,✅
+Translated,トリガー,トリガー,4,✅
+Translated,メトリクス,メトリクス,5,✅
+Translated,ファネル,ファネル,4,✅
+Translated,モデル,モデル,3,✅
+Translated,観測結果,観測結果,4,✅
+Translated,事例集,事例集,3,✅
+Translated,Video Library,ビデオライブラリ,13,✅
+Translated,アップグレード,アップグレード,7,✅
+Translated,ウェブサイトとアプリ,ウェブサイトとアプリ,10,✅
+Translated,ページ,ページ,3,✅
+Translated,アップデート,アップデート,6,✅
+Translated,ヘルプが必要ですか?,ヘルプが必要ですか?,10,✅
+Translated,Settings,アカウントID,8,✅
+Translated,Account ID,アカウント,10,✅
+Translated,Accounts,訪問者の割り当て,8,✅
+Translated,General,利用状況,7,✅
+Translated,Visitor Allocation,ユーザー,18,✅
+Translated,Usage,セキュリティ,5,✅
+Translated,Users,プライバシーセンター,5,✅
+Translated,Security,サブスクリプションをキャンセル,8,✅
+Translated,Privacy Center,アプリ,14,✅
+Translated,Cancel Subscription,アクティビティタイムライン,19,✅
+Translated,Apps,Insights設定,4,✅
+Translated,Activity Timeline,通知設定,17,✅
+Translated,Insights Settings,属性リスト,17,✅
+Translated,Notification Preferences,キャンペーン,24,✅
+Translated,Attributes List,サブスクリプションと請求書,15,✅
+Translated,Campaigns,私の購読,9,✅
+Translated,Subscription  Invoices,非アクティブ,22,✅
+Translated,My Subscription,請求書履歴,15,✅
+Translated,Inactive,訪問者の割り当て,8,✅
+Translated,Invoice History,請求プロファイル,15,✅
+Translated,Visitor Allocation,プロフィール詳細,18,✅
+Translated,Billing Profile,ワークスペース,15,✅
+Translated,Profile details,プロフィール詳細,15,✅
+Translated,Workspaces,メール,10,✅
+Translated,Profile Details,メールアドレスの変更,15,✅
+Translated,Basic,電話番号,5,✅
+Translated,Name,日本語,4,✅
+Translated,Email,プロフィール画像,5,✅
+Translated,Change Email Address,画像をアップロード,20,✅
+Translated,Phone number,サポートされているファイルタイプ,12,✅
+Translated,Country,推奨サイズ:,7,✅
+Translated,Department,ファイルサイズの制限:,10,✅
+Translated,Role,セキュリティ,4,✅
+Translated,Language,2段階認証 (2FA),8,✅
+Translated,日本語,もっと詳しく知ります,3,✅
+Translated,Profile Picture,2FAを有効にする,15,✅
+Translated,Upload image,パスワードを変更する,12,✅
+Translated,File types supported,現在のパスワード,20,✅
+Translated,"png, jpeg",新しいパスワード,9,✅
+Translated,. Recommended size:,パスワードの確認,19,✅
+Translated,512 x 512 px.,サポートを頼む,13,✅
+Translated,Security,稼働時間情報,8,✅
+Translated,Learn more,日本語,10,✅
+Not Translated,Funnel Reports,Funnel Reports,14,❌
+Not Translated,Feature Management,Feature Management,18,❌
+Not Translated,Data360,Data360,7,❌
+Not Translated,Catalog,Catalog,7,❌
+Not Translated,Recommendations,Recommendations,15,❌
+Not Translated,Blocks,Blocks,6,❌
+Not Translated,Country,pngjpeg,7,❌
+Not Translated,Department,512 x 512 px.,10,❌
+Not Translated,Role,2 MB.,4,❌
+Not Translated,File size limit:,Developer resources,16,❌
+Not Translated,2 MB.,Show logged in users,5,❌
+Not Translated,Two-Factor Authentication (2FA),English,31,❌
+Not Translated,Disabled for you,,16,❌
+Not Translated,Enable 2FA,,10,❌
+Not Translated,Change Password,,15,❌
+Not Translated,Current Password,,16,❌
+Not Translated,New Password,,12,❌
+Not Translated,Confirm Password,,16,❌
+Not Translated,サポートを頼む,,7,❌
+Not Translated,Developer resources,,19,❌
+Not Translated,Show logged in users,,20,❌
+Not Translated,稼働時間情報,,6,❌
+Not Translated,English,,7,❌
+Not Translated,日本語,,3,❌

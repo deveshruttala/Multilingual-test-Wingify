@@ -63,30 +63,10 @@ def test_translation_validation_with_language_switching():
             # 4. Switch to Japanese
             print("🔄 Switching to Japanese...")
             try:
-                # Look for Japanese language selector
-                japanese_selectors = [
-                    "text=日本語",
-                    "[data-lang='ja']",
-                    "button:has-text('日本語')",
-                    ".language-selector:has-text('日本語')"
-                ]
-                
-                switched = False
-                for selector in japanese_selectors:
-                    try:
-                        if page.locator(selector).is_visible():
-                            page.click(selector)
-                            print(f"   Clicked Japanese selector: {selector}")
-                            switched = True
-                            break
-                    except Exception:
-                        continue
-                
-                if not switched:
-                    print("   ⚠️  Japanese language selector not found or not visible")
-                    print("   📍 Current page elements:")
-                    page.screenshot(path="reports/no_language_selector.png")
-                    return
+                # Use the proper language switching function from actions
+                from src.runner.actions import switch_language
+                switch_language(page, cfg, to_japanese=True)
+                print("   ✅ Language switch attempted using configured selectors")
                 
                 # Wait for language switch to complete
                 page.wait_for_timeout(3000)
@@ -94,7 +74,8 @@ def test_translation_validation_with_language_switching():
                 
             except Exception as e:
                 print(f"   ❌ Error switching language: {e}")
-                return
+                # Continue with the test even if language switch fails
+                print("   ⚠️  Continuing test with current language state")
             
             # 5. Extract Japanese texts (after language switch)
             print("📝 Extracting Japanese texts...")
