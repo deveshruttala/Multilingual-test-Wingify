@@ -1,0 +1,72 @@
+
+PROMPTS = [
+		
+
+     ## given list 	
+    "Segment visitors who spend more than 2 minutes on the page and clicked on #testElement2",
+    "Users trying to close the page or scrolled more than 40% of the page",
+    "Users whose landing page is https://app.vwo.com/ and Referrer contains ccp",
+    "Linux users and query param vwo does not contain app",
+    "Chrome, Firefox users and utm param source contains segmentCopilot",   #### gives inconsistent results  and unable to choose browser
+    "Desktop and Mobile users whose user agent strictly not equal to App",
+    
+
+    ## Mine
+    ## single attribute 
+
+ 
+    "Email campaign traffic users", ## found results but incorrect json response and inconsistency 
+    "Visitors who clicked on #playVideoButton", ##  found results but incorrect json response
+    "Users with query parameter campaign equals blackfriday", ## check there failing case sensitive here not consistent 
+    "Users whose landing page starts with https://blog.vwo.com", ## check there failing case sensitive here not consistent here first compares with case sensitive but later on compares with incase sensitive  probably model is learning on multiple calls and changing output failing test
+    "Users active between 21:00 and 23:00", ## incorrect result shows date for time 
+
+
+    ## advanced
+
+    "Visitors whose landing page contains vwo and user agent contains Chrome",	## inconsistency
+    "User are Firefox users and Desktop users", ## incorrect results
+    "Users who were active during 14th and 15th hours and viewed /checkout", #Inconsistency, case sensitive fail
+    "New visitors who visited more than 3 pages in a session during weekdays" ## wrong results from llm 
+    "Returning users from UK on Safari who viewed more than 3 pages" , ## wrong results unable choose safari
+    "Social traffic users from USA using Chrome", ## wrong results unable choose chrome browser fails 
+    "Referral traffic users on Windows desktops", # Inconsistent results sometimes choose desktop as different attribute and not able to choose windows as os 
+    "New visitors whose landing page ends with /pricing and bounced", ## inconsistent with case sensitivity and incase sensitivity 
+    "Paid traffic users who clicked #ctaButton and referrer facebook",  #Inconsistency and unable to choose referrer option
+    "Mac users with screen resolution 1366x768", ## works but unable to choose mac as os
+    "Returning users with query param ref equals email who scrolled more than 40%",## case sensitive fail 
+    "Edge users with referrer not containing twitter", ## inconsistent and unable to choose browser edge
+    "Opera users whose referrer contains youtube", ## inconsistent and unable to choose browser edge
+    "Users with query param source equals cpc and visited more than 2 pages", ## case sensitive fail
+    "Visitors who scrolled more than 50% of the page and clicked on #signupButton",  ## sometimes api json fail
+
+
+
+
+
+
+    ## working properly 
+    ## multiple attributes
+    "Tablet users from Canada whose landing page contains /pricing and scrolled beyond 50%",
+    "Users with screen width less than 1024px or screen height not equal to 768px",
+    "Returning users whose referrer does not contain facebook",
+    "Returning users who clicked #formSubmit with referrer google",
+    "Users who clicked #playVideoButton and referrer contains youtube",
+    "Mobile users with query param plan strictly case sensitive not equal to free", ## passed case insensitive
+    "Users who spent over 5 minutes and triggered exit intent",
+    "Users on weekends during 14, 15, 16, and 17th hours",
+    "India, USA, and Canada users who are returning",
+    "Desktop users from Japan with screen width greater than 1200px",
+    "Desktop users with screen width greater than 1920px",
+    "Tablet users whose landing page contains /products and clicked #addToCart",
+    "Mac users from Singapore and Hong Kong", ## unable to choose os mac
+
+
+    ## single attribute
+    "Users who spent more than 1 minute on page",
+    "Users who scrolled more than 25% of the page",
+    "Visitors with referrer equals youtube", 
+    "Visitors from UK and Canada",
+    "Users with query parameter plan equals enterprise",
+]
+
