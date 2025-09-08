@@ -3,33 +3,57 @@ from playwright.async_api import async_playwright
 import pandas as pd
 import json
 import re
+import os
 
 PROMPTS = [
-    "Users whose landing page is exactly https://app.vwo.com/",
-    "Users trying to close the page or scrolled more than 40% of the page",
+
+
+    "Returning users who clicked #formSubmit with referrer google",
+    "Paid traffic users who clicked #ctaButton and referrer facebook",
+    "Tablet users whose landing page contains /products and clicked #addToCart",
+    "New visitors whose landing page ends with /pricing and bounced",
+    "Referral traffic users on Windows desktops",
+    "Social traffic users from USA using Chrome",
+    "India, USA, and Canada users who are returning",
+    "Users on weekends during 14, 15, 16, and 17th hours",
+    "sers whose landing page is https://app.vwo.com/  and Referrer contains ccp",
+    "Returning users whose referrer does not contain facebook",
+    "Users with screen width less than 1024px or screen height not equal to 768px",
+    "Tablet users from Canada whose landing page contains /pricing and scrolled beyond 50%",
+    "Returning users from UK on Safari who viewed more than 3 pages"
 ]
 
 OUTPUT_FILE = "segment_query_results.xlsx"
-REPEAT_COUNT = 5  # runs per prompt
+REPEAT_COUNT = 10  # runs per prompt
 
 
 def extract_combined_query(text: str):
-    """
-    Extract all valid JSON objects from the response string and combine them into one query list.
-    """
+    """Extract all valid JSON objects from the response string and combine them into one query list."""
     matches = re.findall(r"\{.*?\}", text, re.DOTALL)
     query_parts = []
 
     for m in matches:
         try:
             parsed = json.loads(m)
-            # Keep only query-related structures
             if "queryElementType" in parsed or "id" in parsed:
                 query_parts.append(parsed)
         except Exception as e:
             print(f"⚠️ Skipped invalid JSON block: {e}")
 
     return query_parts
+
+
+def save_to_excel(row_dict):
+    """Append a row to the Excel file safely."""
+    df_new = pd.DataFrame([row_dict])
+    if os.path.exists(OUTPUT_FILE):
+        # Append to existing file
+        existing = pd.read_excel(OUTPUT_FILE)
+        df_all = pd.concat([existing, df_new], ignore_index=True)
+        df_all.to_excel(OUTPUT_FILE, index=False)
+    else:
+        # Create new file
+        df_new.to_excel(OUTPUT_FILE, index=False)
 
 
 async def run():
@@ -46,9 +70,7 @@ async def run():
         await page.wait_for_timeout(6000)
 
         # Step 2: Go to campaign audience page
-        await page.goto(
-            "https://app.vwo.com/#/test/ab/514/edit/audience-and-traffic/?accountId=955080"
-        )
+        await page.goto("https://app.vwo.com/#/test/ab/517/edit/audience-and-traffic/?accountId=955080")
         await page.wait_for_timeout(6000)
 
         # Step 3: Ensure Copilot tab is clicked
@@ -57,8 +79,6 @@ async def run():
             await page.wait_for_timeout(2000)
         except Exception:
             print("⚠️ Copilot tab not found or already active")
-
-        results = []
 
         for prompt in PROMPTS:
             print(f"\n🔎 Testing prompt: {prompt}")
@@ -91,7 +111,6 @@ async def run():
                     body = await response.body()
                     text = body.decode("utf-8", errors="ignore")
 
-                    # Extract + Combine JSON blocks into one list
                     combined_query = extract_combined_query(text)
 
                     if combined_query:
@@ -107,30 +126,23 @@ async def run():
                     query_part = "ERROR: No API response"
 
                 # Compare with previous runs
-                status = (
-                    "Consistent"
-                    if prev_query is None or query_part == prev_query
-                    else "Not Consistent"
-                )
+                status = "Consistent" if prev_query is None or query_part == prev_query else "Not Consistent"
                 prev_query = query_part
 
-                results.append(
-                    {
-                        "Prompt": prompt,
-                        "Query": query_part,
-                        "Status": status,
-                        "Run": i + 1,
-                    }
-                )
+                row = {
+                    "Prompt": prompt,
+                    "Query": query_part,
+                    "Status": status,
+                    "Run": i + 1,
+                }
+
+                # Save immediately after every run
+                save_to_excel(row)
 
                 print(f"Run {i+1}: {status}")
                 await page.wait_for_timeout(2000)
 
-        # Save results to Excel
-        df = pd.DataFrame(results)
-        df.to_excel(OUTPUT_FILE, index=False)
-
-        print(f"\n✅ Results saved to {OUTPUT_FILE}")
+        print(f"\n✅ Results continuously saved to {OUTPUT_FILE}")
         await browser.close()
 
 
